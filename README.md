@@ -1,5 +1,6 @@
 # projekt-fredrika
-Projekt Fredrika
+
+Repository för mitt arbete med Projekt Fredrika.
 
 ## Anvisningar för att köra notebooken
 
@@ -24,3 +25,9 @@ Gör alla dessa steg i en terminal (och gärna i en ny folder).
 
 * https://sv.wikipedia.org/wiki/Anv%C3%A4ndare:Cqsi/sandl%C3%A5da
 * https://fi.wikipedia.org/wiki/K%C3%A4ytt%C3%A4j%C3%A4:Cqsi/Hiekkalaatikko
+
+## Möjligen användbara linkar
+
+* [Navboxar på svenska Wikipedia](https://sv.wikipedia.org/wiki/Mall:Navbox)
+* [Documentation för mwclient](https://mwclient.readthedocs.io/en/latest/)
+* [Pywikibots hemsida](https://www.mediawiki.org/wiki/Manual:Pywikibot)
