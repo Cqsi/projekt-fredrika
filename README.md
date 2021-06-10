@@ -16,7 +16,7 @@ Gör alla dessa steg i en terminal (och gärna i en ny folder).
 1. Hoppa in i en terminal (det är ingen skillnad vilken folder du är i) och kör kommandot `pip install mwclient`
 
 
-## (Temporära) Sandboxar
+## Sandboxar
 
 * https://sv.wikipedia.org/wiki/Anv%C3%A4ndare:Cqsi/sandl%C3%A5da
 * https://fi.wikipedia.org/wiki/K%C3%A4ytt%C3%A4j%C3%A4:Cqsi/Hiekkalaatikko
