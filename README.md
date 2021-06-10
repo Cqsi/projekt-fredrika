@@ -31,3 +31,4 @@ Gör alla dessa steg i en terminal (och gärna i en ny folder).
 * [Navboxar på svenska Wikipedia](https://sv.wikipedia.org/wiki/Mall:Navbox)
 * [Documentation för mwclient](https://mwclient.readthedocs.io/en/latest/)
 * [Pywikibots hemsida](https://www.mediawiki.org/wiki/Manual:Pywikibot)
+* [Gammal wiki för mwclient, här finns ett par exempel](https://github.com/mwclient/mwclient/wiki)
