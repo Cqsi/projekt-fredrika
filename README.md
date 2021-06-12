@@ -2,7 +2,9 @@
 
 Repository för mitt arbete med Projekt Fredrika.
 
-## Anvisningar för att köra notebooken
+## Anvisningar
+
+### Köra Jupyter Notebook
 
 Gör alla dessa steg i en terminal (och gärna i en ny folder).
 
@@ -12,7 +14,7 @@ Gör alla dessa steg i en terminal (och gärna i en ny folder).
 4. Kör sedan kommandot `jupyter notebook` i terminalen och det borde automatiskt öppnas en sida i din internet-browser där du kan klicka på den notebooken som du vill checka.
 
 
-## Anvisningar för att installera mwclient
+### Installera mwclient
 
 1. Hoppa in i en terminal (det är ingen skillnad vilken folder du är i) och kör kommandot `pip install mwclient`
 
