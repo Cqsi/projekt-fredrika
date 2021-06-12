@@ -32,3 +32,4 @@ Gör alla dessa steg i en terminal (och gärna i en ny folder).
 * [Documentation för mwclient](https://mwclient.readthedocs.io/en/latest/)
 * [Pywikibots hemsida](https://www.mediawiki.org/wiki/Manual:Pywikibot)
 * [Gammal wiki för mwclient, här finns ett par exempel](https://github.com/mwclient/mwclient/wiki)
+* [Best practices for Jupyter Notebooks](https://towardsdatascience.com/jupyter-notebook-best-practices-f430a6ba8c69)
