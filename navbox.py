@@ -1,6 +1,5 @@
 import mwclient
 import pandas as pd
-import re
 
 username = "Cqsi" # sätt användarnament för botten här
 password = open("foo.txt", "r").read() # Mitt lösenord är i denna fil och därför finns inte filen på Github
@@ -18,7 +17,7 @@ def read(article):
     else:
         return "Wikipedia page doesn't exist"
 
-def add_navbox(excel_file, navbox):
+def add_nauvo_navbox(excel_file):
 
     try:
         df = pd.read_excel(excel_file, engine='openpyxl')
@@ -29,7 +28,11 @@ def add_navbox(excel_file, navbox):
     for index, row in df.iterrows():
         cur = row["artikel"]
         
-        text = read(cur)
+        article_text = read(cur)
+        text = article_text.replace("[[Luokka:", "{{Nauvo}}\n[[Luokka:", 1)
         print(text)
+        print()
+        print("************************************************************")
+        print()
 
-#add_navbox("input.xlsx", "{{Nauvo}}")
+add_nauvo_navbox("input.xlsx")
