@@ -7,17 +7,12 @@ password = open("foo.txt", "r").read() # Mitt lösenord är i denna fil och där
 lang = "fi" # fi/sv/en etc
 
 site = mwclient.Site(lang + ".wikipedia.org")
-site.login(username, password) 
-    
-def read(article):
-    page = site.pages[article]
-
-    if page.exists:
-        return page.text()
-    else:
-        return "Wikipedia page doesn't exist"
+site.login(username, password)    
 
 def add_nauvo_navbox(excel_file):
+
+    counter = 0
+    found = 0
 
     try:
         df = pd.read_excel(excel_file, engine='openpyxl')
@@ -26,15 +21,28 @@ def add_nauvo_navbox(excel_file):
         print("Something went wrong. Check the path of the file.")
 
     for index, row in df.iterrows():
+        counter+=1
         cur = row["artikel"]
-        
-        article_text = read(cur)
-        text = article_text.replace("[[Luokka:", "{{Nauvo}}\n[[Luokka:", 1)
-        print(text)
+
+        # load Wikipedia page
+        page = site.pages[cur]
+
+        if page.exists:
+            found+=1
+            article_text = page.text()
+
+            text = article_text.replace("[[Luokka:", "{{Nauvo}}\n[[Luokka:", 1)
+            print(text)
+
+        else:
+            print("Wikipedia page doesn't exist")
 
         # make the output clearer
         print()
         print("************************************************************")
         print()
+
+    print("Edited " + str(found) + "/" + str(counter) + " Wikipedia articles. " + str(counter-found) + " articles were not found.")
+        
 
 add_nauvo_navbox("input.xlsx")
