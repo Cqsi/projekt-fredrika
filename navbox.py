@@ -31,6 +31,8 @@ def add_nauvo_navbox(excel_file):
         article_text = read(cur)
         text = article_text.replace("[[Luokka:", "{{Nauvo}}\n[[Luokka:", 1)
         print(text)
+
+        # make the output clearer
         print()
         print("************************************************************")
         print()
