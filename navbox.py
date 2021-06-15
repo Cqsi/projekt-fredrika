@@ -34,7 +34,7 @@ def add_nauvo_navbox(excel_file):
 
             if "{{Nauvo}}" not in article_text:
                 edited += 1
-                text = article_text.replace("[[Luokka:", "{{Nauvo}}\n[[Luokka:", 1)
+                text = article_text.replace("[[Luokka:", "{{Nauvo}}\n\n[[Luokka:", 1)
                 print(text)
             else:
                 print("{{Nauvo}} already in page")
