@@ -2,7 +2,7 @@ import mwclient
 import pandas as pd
 
 username = "Cqsi" # sätt användarnament för botten här
-password = open("foo.txt", "r").read() # Mitt lösenord är i denna fil och därför finns inte filen på Github
+password = open("password.txt", "r").read() # Mitt lösenord är i denna fil och därför finns inte filen på Github
 
 lang = "fi" # fi/sv/en etc
 
@@ -13,6 +13,7 @@ def add_nauvo_navbox(excel_file):
 
     counter = 0
     found = 0
+    edited = 0
 
     try:
         df = pd.read_excel(excel_file, engine='openpyxl')
@@ -28,11 +29,15 @@ def add_nauvo_navbox(excel_file):
         page = site.pages[cur]
 
         if page.exists:
-            found+=1
+            found += 1
             article_text = page.text()
 
-            text = article_text.replace("[[Luokka:", "{{Nauvo}}\n[[Luokka:", 1)
-            print(text)
+            if "{{Nauvo}}" not in article_text:
+                edited += 1
+                text = article_text.replace("[[Luokka:", "{{Nauvo}}\n[[Luokka:", 1)
+                print(text)
+            else:
+                print("{{Nauvo}} already in page")
 
         else:
             print("Wikipedia page doesn't exist")
@@ -42,7 +47,8 @@ def add_nauvo_navbox(excel_file):
         print("************************************************************")
         print()
 
-    print("Edited " + str(found) + "/" + str(counter) + " Wikipedia articles. " + str(counter-found) + " articles were not found.")
+    print("Found " + str(found) + "/" + str(counter) + " Wikipedia articles.")
+    print("Edited " + str(edited) + "/" + str(found) + " Wikipedia articles.")
         
 
 add_nauvo_navbox("input.xlsx")
