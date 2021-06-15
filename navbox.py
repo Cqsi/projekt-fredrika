@@ -51,4 +51,4 @@ def add_nauvo_navbox(excel_file):
     print("Edited " + str(edited) + "/" + str(found) + " Wikipedia articles.")
         
 
-add_nauvo_navbox("input.xlsx")
+add_nauvo_navbox("excel\\input.xlsx")
