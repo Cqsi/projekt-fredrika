@@ -7,7 +7,9 @@ password = open("password.txt", "r").read() # Mitt lösenord är i denna fil och
 lang = "fi" # fi/sv/en etc
 
 site = mwclient.Site(lang + ".wikipedia.org")
-site.login(username, password)    
+site.login(username, password) 
+
+edit_summary = "Added {{Nauvo}} navbox"
 
 def add_nauvo_navbox(excel_file):
 
@@ -34,9 +36,14 @@ def add_nauvo_navbox(excel_file):
             article_text = page.text()
 
             if "{{Nauvo}}" not in article_text:
+
                 edited += 1
+
                 text = article_text.replace("[[Luokka:", "{{Nauvo}}\n\n[[Luokka:", 1)
                 print(text)
+                
+                # DO NOT RUN THE LINE BELOW IF YOU DON'T WANT TO EDIT THE ARTICLE
+                #page.edit(text, edit_summary)
             else:
                 print("{{Nauvo}} already in page")
 
