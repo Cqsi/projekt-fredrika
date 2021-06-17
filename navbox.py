@@ -18,8 +18,9 @@ def add_nauvo_navbox(excel_file):
     try:
         df = pd.read_excel(excel_file, engine='openpyxl')
         print("Excel read.")
-    except:
-        print("Something went wrong. Check the path of the file.")
+    except Exception as e:
+        print("Something went wrong. Check the error:")
+        print(e)
 
     for index, row in df.iterrows():
         counter+=1
