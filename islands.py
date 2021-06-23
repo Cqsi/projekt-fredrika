@@ -24,14 +24,16 @@ def filter_islands(island):
         return False
      
 
-for index, row in df.iterrows(): 
+for index in df.index: 
+
+    print(index)
 
     # counter+=1
     
     # if counter == stop:
     #     break
 
-    cur = row["itemLabel"]
+    cur = df.loc[index, "itemLabel"]
 
     response = requests.get("https://avoin-paikkatieto.maanmittauslaitos.fi/geocoding/v1/pelias/search?sources=geographic-names&text=" + cur + "&api-key=" + api_key)
 
@@ -63,13 +65,16 @@ for index, row in df.iterrows():
             print(coordinates)
             print()
 
-            # Edit excel file
-            
-
-
-
+            # Edit the dataframe (doesn't work yet)
+            df[index, "MML_label"] = label
+            df[index, "MML_placeId"] = placeId
+            df[index, "MML_coordinates"] = str(coordinates[0]) + ", " + str(coordinates[1])
+            df[index, "placeElevation"] = placeElevation
+            df[index, "MML_label:municipality"] = municipality
 
                 
     else:
         print("Something went wrong. Status code " + response.status_code)
-    
+
+# Export dataframe as excel
+df.to_excel("C:\\Users\\casim\\Desktop\\Programming\\Python\\ProjektFredrika\\projekt-fredrika\\edited_nagu.xlsx", index = False)
