@@ -15,8 +15,6 @@ except Exception as e:
     print("Something went wrong. Check the error:")
     print(e)
 
-#print(df)
-
 def filter_islands(island):
     if (island["properties"]["label:placeType"] == "Saari tai luoto" or island["properties"]["label:placeType"] == "Saari- tai luotoryhmä") and island["properties"]["label:municipality"] == "Parainen":
         return True
@@ -25,8 +23,6 @@ def filter_islands(island):
      
 
 for index in df.index: 
-
-    print(index)
 
     # counter+=1
     
