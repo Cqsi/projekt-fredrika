@@ -75,4 +75,4 @@ for index in df.index:
         print("Something went wrong. Status code " + response.status_code)
 
 # Export dataframe as excel
-df.to_excel("C:\\Users\\casim\\Desktop\\Programming\\Python\\ProjektFredrika\\projekt-fredrika\\excel\\edited_nagu.xlsx", index = False)
+df.to_excel("excel\\edited_nagu.xlsx", index = False)
