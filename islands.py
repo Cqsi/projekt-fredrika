@@ -42,8 +42,10 @@ for index in df.index:
 
         if length==0:
             print("Island not found.")
+            print()
         elif length>1:
             print("More than one result.")
+            print()
         else:
             prop = islands_parainen[0]["properties"]
 
@@ -61,16 +63,16 @@ for index in df.index:
             print(coordinates)
             print()
 
-            # Edit the dataframe (doesn't work yet)
-            # df[index, "MML_label"] = label
-            # df[index, "MML_placeId"] = placeId
-            # df[index, "MML_coordinates"] = str(coordinates[0]) + ", " + str(coordinates[1])
-            # df[index, "placeElevation"] = placeElevation
-            # df[index, "MML_label:municipality"] = municipality
+        
+            df.loc[index, "MML_label"] = label
+            df.loc[index, "MML_placeId"] = placeId
+            df.loc[index, "MML_coordinates"] = str(coordinates[0]) + ", " + str(coordinates[1])
+            df.loc[index, "placeElevation"] = placeElevation
+            df.loc[index, "MML_label:municipality"] = municipality
 
                 
     else:
         print("Something went wrong. Status code " + response.status_code)
 
 # Export dataframe as excel
-# df.to_excel("C:\\Users\\casim\\Desktop\\Programming\\Python\\ProjektFredrika\\projekt-fredrika\\edited_nagu.xlsx", index = False)
+df.to_excel("C:\\Users\\casim\\Desktop\\Programming\\Python\\ProjektFredrika\\projekt-fredrika\\excel\\edited_nagu.xlsx", index = False)
