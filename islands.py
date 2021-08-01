@@ -17,6 +17,7 @@ api_key = "e99a7c7b-40c7-43e6-a062-b25cdbe7cd52"
 # counter = 0
 
 dist = []
+hits = []
 
 try:
     df = pd.read_excel(excel_file, engine='openpyxl')
@@ -50,14 +51,14 @@ for index in df.index:
         islands_parainen = list(filter(filter_islands, islands))
         length = len(islands_parainen)
 
+        coords = ""
+
         if length==0:
             print("Island not found.")
             print()
-            dist.append("NaN")
         elif length>1:
             print("More than one result.")
             print()
-            dist.append("NaN")
         else:
             prop = islands_parainen[0]["properties"]
 
@@ -76,9 +77,9 @@ for index in df.index:
 
             wd_coords = re.findall(r'\d+\.\d+', df.loc[index, "coords"])
 
-            dist.append(round(distance(float(wd_coords[0]), float(wd_coords[1]), coordinates[0], coordinates[1])*1000, 2)) # in meters
+            coords = round(distance(float(wd_coords[0]), float(wd_coords[1]), coordinates[0], coordinates[1])*1000, 2)
 
-            print(str(dist[-1]) + " meters")
+            print(str(coords) + " meters")
             print()
 
 
@@ -88,12 +89,16 @@ for index in df.index:
             df.loc[index, "placeElevation"] = placeElevation
             df.loc[index, "MML_label:municipality"] = municipality
 
-                
+        hits.append(length)
+        dist.append(coords)
+
+
     else:
         print("Something went wrong. Status code " + response.status_code)
 
 
 df["distance"] = dist
+df["träffar"] = hits
 
 # Export dataframe as excel
 df.to_excel("excel\\edited_nagu.xlsx", index = False)
