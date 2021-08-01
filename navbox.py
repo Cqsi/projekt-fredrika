@@ -1,7 +1,7 @@
 import mwclient
 import pandas as pd
 
-username = "Cqsi" # sätt användarnament för botten här
+username = "PFredrikaBot" # sätt användarnament för botten här
 password = open("password.txt", "r").read() # Mitt lösenord är i denna fil och därför finns inte filen på Github
 
 lang = "fi" # fi/sv/en etc
@@ -40,15 +40,15 @@ def add_nauvo_navbox(excel_file):
                 edited += 1
 
                 text = article_text.replace("[[Luokka:", "{{Nauvo}}\n\n[[Luokka:", 1)
-                print(text)
+                print("Added {{Nauvo}} to " + cur)
                 
                 # DO NOT RUN THE LINE BELOW IF YOU DON'T WANT TO EDIT THE ARTICLE
-                #page.edit(text, edit_summary)
+                page.edit(text, edit_summary)
             else:
                 print("{{Nauvo}} already in page")
 
         else:
-            print("Wikipedia page doesn't exist")
+            print("Wikipedia page doesn't exist " + cur)
 
         # make the output clearer
         print()
@@ -59,4 +59,4 @@ def add_nauvo_navbox(excel_file):
     print("Edited " + str(edited) + "/" + str(found) + " Wikipedia articles.")
         
 
-add_nauvo_navbox("excel\\input.xlsx")
+add_nauvo_navbox("excel\\nauvo.xlsx")

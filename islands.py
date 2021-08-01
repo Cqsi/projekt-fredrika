@@ -1,5 +1,13 @@
 import pandas as pd
 import requests
+import re
+
+from math import cos, asin, sqrt, pi
+
+def distance(lat1, lon1, lat2, lon2):
+    p = pi/180
+    a = 0.5 - cos((lat2-lat1)*p)/2 + cos(lat1*p) * cos(lat2*p) * (1-cos((lon2-lon1)*p))/2
+    return 12742 * asin(sqrt(a)) #2*R*asin...
 
 excel_file = "excel\\nagu_testing.xlsx"
 
@@ -7,6 +15,8 @@ api_key = "e99a7c7b-40c7-43e6-a062-b25cdbe7cd52"
 
 # stop = 20
 # counter = 0
+
+dist = []
 
 try:
     df = pd.read_excel(excel_file, engine='openpyxl')
@@ -43,9 +53,11 @@ for index in df.index:
         if length==0:
             print("Island not found.")
             print()
+            dist.append("NaN")
         elif length>1:
             print("More than one result.")
             print()
+            dist.append("NaN")
         else:
             prop = islands_parainen[0]["properties"]
 
@@ -61,9 +73,15 @@ for index in df.index:
             print(placeElevation)
             print(municipality)
             print(coordinates)
+
+            wd_coords = re.findall(r'\d+\.\d+', df.loc[index, "coords"])
+
+            dist.append(round(distance(float(wd_coords[0]), float(wd_coords[1]), coordinates[0], coordinates[1])*1000, 2)) # in meters
+
+            print(str(dist[-1]) + " meters")
             print()
 
-        
+
             df.loc[index, "MML_label"] = label
             df.loc[index, "MML_placeId"] = placeId
             df.loc[index, "MML_coordinates"] = str(coordinates[0]) + ", " + str(coordinates[1])
@@ -73,6 +91,9 @@ for index in df.index:
                 
     else:
         print("Something went wrong. Status code " + response.status_code)
+
+
+df["distance"] = dist
 
 # Export dataframe as excel
 df.to_excel("excel\\edited_nagu.xlsx", index = False)
